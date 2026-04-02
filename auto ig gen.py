@@ -18,7 +18,8 @@ SUCCESS = f'{rd}[{lgn}+{rd}]{gn} '
 ERROR = f'{rd}[{lrd}-{rd}]{rd} '
 
 # Telegram Bot Configuration (hardcoded as requested)
-TELEGRAM_TOKEN = ""
+bot_token = os.environ.get('BOT_TOKEN')
+bot = telebot.TeleBot(bot_token)
 CHAT_ID = ""  # This is the default chat ID, but the bot will handle any chat
 
 # Proxies: load from proxies.txt, each line format: host:port:username:password
@@ -247,7 +248,9 @@ def Create_Acc(Headers, Email, SignUpCode, proxy=None):
         return f"❌ *Creation Error:* `{str(e)}`", None, None, None
 
 # Telegram bot handlers
-bot = telebot.TeleBot('7972037861:AAGQO4xntrYX4AKCfM6xkHpjNo_CekIn0GY')
+# Telegram bot configuration (Now properly getting token from environment)
+bot_token = os.environ.get('BOT_TOKEN')
+bot = telebot.TeleBot(bot_token)
 
 @bot.message_handler(commands=['start'])
 def start(message):
